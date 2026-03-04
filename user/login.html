@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="icon" href="data:,">
+    <title>Login - PTIT Exam System</title>
+</head>
+<body class="auth-page">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <img src="../images/ptit-logo.png" alt="PTIT Logo" class="login-logo">
+                <h1>PTIT Exam</h1>
+                <p>Hệ thống kiểm tra trực tuyến</p>
+            </div>
+
+            <form id="userLoginForm" class="login-form">
+                <div class="form-group">
+                    <label for="userUsername">Tên đăng nhập</label>
+                    <input type="text" id="userUsername" name="username" placeholder="Nhập tên đăng nhập" required>
+                    <span class="error-message" id="userUsernameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPassword">Mật khẩu</label>
+                    <input type="password" id="userPassword" name="password" placeholder="Nhập mật khẩu" required>
+                    <span class="error-message" id="userPasswordError"></span>
+                </div>
+
+                <button type="submit" class="btn btn-login">Đăng Nhập</button>
+            </form>
+
+            <div id="loginMessage" class="login-message"></div>
+
+            <div class="auth-links">
+                <p>Chưa có tài khoản? <a href="register.html">Đăng ký tại đây</a></p>
+                <p><a href="../admin/login.html">Đăng nhập Admin</a></p>
+            </div>
+
+            <div class="demo-credentials">
+                <p><strong>Demo Account:</strong></p>
+                <p>Username: <code>student</code></p>
+                <p>Password: <code>student123</code></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/validation.js"></script>
+    <script>
+        document.getElementById('userLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('userUsername').value.trim();
+            const password = document.getElementById('userPassword').value.trim();
+            const usernameError = document.getElementById('userUsernameError');
+            const passwordError = document.getElementById('userPasswordError');
+            const loginMessage = document.getElementById('loginMessage');
+            
+            usernameError.textContent = '';
+            passwordError.textContent = '';
+            loginMessage.className = 'login-message';
+            
+            let isValid = true;
+            
+            if (!username) {
+                usernameError.textContent = 'Vui lòng nhập tên đăng nhập';
+                isValid = false;
+            }
+            
+            if (!password) {
+                passwordError.textContent = 'Vui lòng nhập mật khẩu';
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            if (username === 'student' && password === 'student123') {
+                loginMessage.className = 'login-message success';
+                loginMessage.textContent = 'Đăng nhập thành công! Chuyển hướng...';
+                
+                localStorage.setItem('userSession', JSON.stringify({
+                    username: username,
+                    loginTime: new Date().toISOString(),
+                    role: 'student'
+                }));
+                
+                setTimeout(() => {
+                    window.location.href = 'main.html';
+                }, 1500);
+            } else {
+                loginMessage.className = 'login-message error';
+                loginMessage.textContent = 'Tên đăng nhập hoặc mật khẩu không đúng!';
+            }
+        });
+    </script>
+</body>
+</html>
