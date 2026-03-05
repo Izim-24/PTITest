@@ -323,6 +323,9 @@ function calculateResults() {
         score: Math.round(score * 100) / 100
     };
 }
+
+function autoSubmitExam() {
+    submittedExam = true;
     
     // Calculate results
     const results = calculateResults();
