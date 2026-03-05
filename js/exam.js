@@ -266,7 +266,7 @@ function submitExam() {
 
     // Redirect to results page
     setTimeout(() => {
-        window.location.href = 'results.html?examId=' + currentExamId;
+        window.location.href = 'results.html';
     }, 1000);
 }
 
@@ -298,6 +298,31 @@ function autoSubmitExam() {
 
     // Redirect to results page
     setTimeout(() => {
+        window.location.href = 'results.html';
+    }, 1000);
+}
+
+function calculateResults() {
+    let correctCount = 0;
+    
+    examData.questions.forEach(question => {
+        const userAnswer = userAnswers[question.id];
+        if (userAnswer === question.correctAnswer) {
+            correctCount++;
+        }
+    });
+    
+    const totalQuestions = examData.questions.length;
+    const percentage = (correctCount / totalQuestions) * 100;
+    const score = (percentage / 100) * examData.totalScore;
+    
+    return {
+        correctCount: correctCount,
+        totalQuestions: totalQuestions,
+        percentage: Math.round(percentage),
+        score: Math.round(score * 100) / 100
+    };
+}
         window.location.href = 'results.html?examId=' + currentExamId;
     }, 1000);
 }

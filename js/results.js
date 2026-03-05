@@ -106,7 +106,7 @@ function displayStats() {
         { label: 'Câu Đúng', value: correctAnswers, unit: 'câu', color: '#6bcf7f' },
         { label: 'Câu Sai', value: wrongAnswers, unit: 'câu', color: '#ff6b6b' },
         { label: 'Tỷ Lệ Đúng', value: percentage, unit: '%' },
-        { label: 'Điểm Số', value: score, unit: `/${examData.totalScore}`, color: var(--ptit-red) },
+        { label: 'Điểm Số', value: score, unit: `/${examData.totalScore}`, color: '#990000' },
         { label: 'Thời Gian Sử Dụng', value: timeUsed, unit: 'phút' }
     ];
 
@@ -212,30 +212,15 @@ function displayRecommendation() {
     let recommendationText = '';
 
     if (percentage >= 90) {
-        recommendationText = `
-            <strong>🌟 Xuất Sắc!</strong> Bạn có kiến thức rất tốt về môn học này. Hãy tiếp tục duy trì 
-            thành tích cao và tìm hiểu sâu hơn những khía cạnh nâng cao của môn học.
-        `;
+        recommendationText = `🌟 Xuất Sắc! Bạn có kiến thức rất tốt về môn học này. Hãy tiếp tục duy trì thành tích cao và tìm hiểu sâu hơn những khía cạnh nâng cao của môn học.`;
     } else if (percentage >= 80) {
-        recommendationText = `
-            <strong>👍 Rất Tốt!</strong> Bạn nắm vững kiến thức cơ bản. Để cải thiện điểm số, 
-            hãy ôn tập lại những phần chưa chắc chắn và làm thêm bài tập.
-        `;
+        recommendationText = `👍 Rất Tốt! Bạn nắm vững kiến thức cơ bản. Để cải thiện điểm số, hãy ôn tập lại những phần chưa chắc chắn và làm thêm bài tập.`;
     } else if (percentage >= 70) {
-        recommendationText = `
-            <strong>⚡ Tốt!</strong> Bạn đã hiểu được phần lớn kiến thức nhưng vẫn còn một số điểm cần cải thiện. 
-            Ôn tập lại các khái niệm khó và làm thêm bài tập để nắm vững hơn.
-        `;
+        recommendationText = `⚡ Tốt! Bạn đã hiểu được phần lớn kiến thức nhưng vẫn còn một số điểm cần cải thiện. Ôn tập lại các khái niệm khó và làm thêm bài tập để nắm vững hơn.`;
     } else if (percentage >= 50) {
-        recommendationText = `
-            <strong>⚠️ Trung Bình!</strong> Bạn vừa vượt qua nhưng cần phải cải thiện rất nhiều. 
-            Hãy ôn tập toàn bộ kiến thức, đặc biệt là các phần bạn trả lời sai.
-        `;
+        recommendationText = `⚠️ Trung Bình! Bạn vừa vượt qua nhưng cần phải cải thiện rất nhiều. Hãy ôn tập toàn bộ kiến thức, đặc biệt là các phần bạn trả lời sai.`;
     } else {
-        recommendationText = `
-            <strong>❌ Cần Cải Thiện!</strong> Kiến thức của bạn về môn học này còn hạn chế. 
-            Hãy quay lại ôn tập từ đầu, chú ý đến các khái niệm cơ bản và làm lại bài thi để kiểm tra lại.
-        `;
+        recommendationText = `❌ Cần Cải Thiện! Kiến thức của bạn về môn học này còn hạn chế. Hãy quay lại ôn tập từ đầu, chú ý đến các khái niệm cơ bản và làm lại bài thi để kiểm tra lại.`;
     }
 
     document.getElementById('recommendationText').textContent = recommendationText;
