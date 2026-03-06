@@ -282,6 +282,99 @@
         </main>
     </div>
 
+    <!-- Exam Editor Modal -->
+    <div id="examEditorModal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="modalTitle">Thêm Kỳ thi Mới</h2>
+                <button class="modal-close" onclick="closeExamEditor()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="examForm" class="exam-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="examName">Tên Kỳ thi *</label>
+                            <input type="text" id="examName" required placeholder="Ví dụ: Thi Giữa kỳ - Lập trình Web">
+                        </div>
+                        <div class="form-group">
+                            <label for="examType">Loại Kỳ thi *</label>
+                            <select id="examType" required>
+                                <option value="">Chọn loại</option>
+                                <option value="Định kỳ">Định kỳ</option>
+                                <option value="Tự do">Tự do</option>
+                                <option value="Luyện tập">Luyện tập</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="examDuration">Thời gian (phút) *</label>
+                            <input type="number" id="examDuration" required min="1" placeholder="Ví dụ: 45">
+                        </div>
+                        <div class="form-group">
+                            <label for="examScore">Điểm Tối đa *</label>
+                            <input type="number" id="examScore" required min="1" value="10" placeholder="10">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="examDescription">Mô tả</label>
+                        <textarea id="examDescription" rows="3" placeholder="Nhập mô tả chi tiết về kỳ thi..."></textarea>
+                    </div>
+
+                    <!-- Questions Management -->
+                    <div class="questions-section">
+                        <div class="section-header">
+                            <h3>Danh sách Câu hỏi</h3>
+                            <div class="section-actions">
+                                <button type="button" class="btn btn-sm btn-success" onclick="addQuestion()">➕ Thêm Câu</button>
+                                <button type="button" class="btn btn-sm btn-info" onclick="toggleExcelImport()">📤 Nhập Excel</button>
+                            </div>
+                        </div>
+
+                        <!-- Excel Import Section -->
+                        <div id="excelImportSection" class="excel-import-section hidden">
+                            <div class="import-box">
+                                <p>Format Excel: Cột A (Câu hỏi) | Cột B-E (Đáp án A-D) | Cột F (Đáp án đúng)</p>
+                                <input type="file" id="excelFile" accept=".xlsx,.csv" class="file-input">
+                                <button type="button" class="btn btn-primary" onclick="importQuestionsFromExcel()">Nhập từ file</button>
+                            </div>
+                        </div>
+
+                        <!-- Questions List -->
+                        <div id="questionsList" class="questions-list">
+                            <!-- Questions will be added here dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">💾 Lưu Kỳ thi</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeExamEditor()">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Excel Import Demo Modal -->
+    <div id="excelTemplateModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Tải Template Excel</h2>
+                <button class="modal-close" onclick="closeExcelTemplate()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tải file mẫu để nhập câu hỏi:</p>
+                <button class="btn btn-primary" onclick="downloadExcelTemplate()">📥 Tải Template</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
     <script src="../js/validation.js"></script>
     <script src="../js/admin.js"></script>
 </body>
